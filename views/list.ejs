@@ -1,0 +1,32 @@
+<%- include('home.ejs') %>
+
+<div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <h2 class="mt-4">Customer List</h2>
+  <table class="table mt-4 table-bordered ">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% customers.forEach(customer => { %>
+        <tr>
+          <td><%= customer._id %></td>
+          <td><%= customer.name %></td>
+          <td><%= customer.email %></td>
+          <td><%= customer.phone %></td>
+          <td>
+            <a href="/customer/edit/<%= customer._id %>" class="btn btn-secondary m-2">Edit</a>
+            <form action="/customer/delete/<%= customer._id %>" method="POST" style="display:inline;">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
